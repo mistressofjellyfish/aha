@@ -159,6 +159,7 @@ int main(int argc,char* args[])
 			printf("\033[1maha\033[0m reads the Input from a file or stdin and writes HTML-Code to stdout\n");
 			printf("\033[4moptions\033[0m: --black,      -b: \033[1;30m\033[1;47mBlack\033[0m Background and \033[1;37mWhite\033[0m \"standard color\"\n");
 			printf("         --pink,       -p: \033[1;35mPink\033[0m Background\n");
+			printf("         --nice,       -i: nice eye friendly stuff\n");
 			printf("         --stylesheet, -s: Use a stylesheet instead of inline styles\n");
 			printf("         --iso X,    -i X: Uses ISO 8859-X instead of utf-8. X must be 1..16\n");
 			printf("         --title X,  -t X: Gives the html output the title \"X\" instead of\n");
@@ -212,6 +213,9 @@ int main(int argc,char* args[])
 		else
 		if ((strcmp(args[p],"--black")==0) || (strcmp(args[p],"-b")==0))
 			colorshema=1;
+		else
+		if ((strcmp(args[p],"--nice")==0) || (strcmp(args[p],"-i")==0))
+			colorshema=3;
 		else
 		if ((strcmp(args[p],"--pink")==0) || (strcmp(args[p],"-p")==0))
 			colorshema=2;
@@ -294,48 +298,74 @@ int main(int argc,char* args[])
 								 printf(".inverted    {color: pink;}\n");
 								 printf(".bg-inverted {background-color: black;}\n");
 								 break;
+				case 3: printf("body  {color:#c5c8c6; background-color: #1D1F21;}\n");
+					printf(".bg-reset	{background-color: #1D1F21;}\n");
+					printf(".reset	{color:#c5c8c6;}\n");
+					printf(".inverted {background: #1D1F21;}\n");
+					printf(".bg-inverted {background:#c5c8c6;}\n");
+					break;
+
 				default: printf(".reset       {color: black;}\n");
 				         printf(".bg-reset    {background-color: white;}\n");
 				         printf(".inverted    {color: white;}\n");
 				         printf(".bg-inverted {background-color: black;}\n");
 			}
-			if (colorshema!=1)
+			switch (colorshema)
 			{
-				printf(".dimgray     {color: dimgray;}\n");
-				printf(".red         {color: red;}\n");
-				printf(".green       {color: green;}\n");
-				printf(".yellow      {color: olive;}\n");
-				printf(".blue        {color: blue;}\n");
-				printf(".purple      {color: purple;}\n");
-				printf(".cyan        {color: teal;}\n");
-				printf(".white       {color: gray;}\n");
-				printf(".bg-black    {background-color: black;}\n");
-				printf(".bg-red      {background-color: red;}\n");
-				printf(".bg-green    {background-color: green;}\n");
-				printf(".bg-yellow   {background-color: olive;}\n");
-				printf(".bg-blue     {background-color: blue;}\n");
-				printf(".bg-purple   {background-color: purple;}\n");
-				printf(".bg-cyan     {background-color: teal;}\n");
-				printf(".bg-white    {background-color: gray;}\n");
-			}
-			else
-			{
-				printf(".dimgray     {color: dimgray;}\n");
-				printf(".red         {color: red;}\n");
-				printf(".green       {color: lime;}\n");
-				printf(".yellow      {color: yellow;}\n");
-				printf(".blue        {color: #3333FF;}\n");
-				printf(".purple      {color: fuchsia;}\n");
-				printf(".cyan        {color: aqua;}\n");
-				printf(".white       {color: white;}\n");
-				printf(".bg-black    {background-color: black;}\n");
-				printf(".bg-red      {background-color: red;}\n");
-				printf(".bg-green    {background-color: lime;}\n");
-				printf(".bg-yellow   {background-color: yellow;}\n");
-				printf(".bg-blue     {background-color: #3333FF;}\n");
-				printf(".bg-purple   {background-color: fuchsia;}\n");
-				printf(".bg-cyan     {background-color: aqua;}\n");
-				printf(".bg-white    {background-color: white;}\n");
+				case 1:
+					printf(".dimgray     {color: dimgray;}\n");
+					printf(".red         {color: red;}\n");
+					printf(".green       {color: lime;}\n");
+					printf(".yellow      {color: yellow;}\n");
+					printf(".blue        {color: #3333FF;}\n");
+					printf(".purple      {color: fuchsia;}\n");
+					printf(".cyan        {color: aqua;}\n");
+					printf(".white       {color: white;}\n");
+					printf(".bg-black    {background-color: black;}\n");
+					printf(".bg-red      {background-color: red;}\n");
+					printf(".bg-green    {background-color: lime;}\n");
+					printf(".bg-yellow   {background-color: yellow;}\n");
+					printf(".bg-blue     {background-color: #3333FF;}\n");
+					printf(".bg-purple   {background-color: fuchsia;}\n");
+					printf(".bg-cyan     {background-color: aqua;}\n");
+					printf(".bg-white    {background-color: white;}\n");
+					break;
+				case 3:
+					printf(".dimgray     {color: #373b41;}\n");
+					printf(".red         {color: #cc6666;}\n");
+					printf(".green       {color: #b5bd68;}\n");
+					printf(".yellow      {color: #f0c674;}\n");
+					printf(".blue        {color: #81a2be;}\n");
+					printf(".purple      {color: #b294bb;}\n");
+					printf(".cyan        {color: #8abeb7;}\n");
+					printf(".white       {color: #c5c8c6;}\n");
+					printf(".bg-black    {background-color: #282a2e;}\n");
+					printf(".bg-red      {background-color: #a54242;}\n");
+					printf(".bg-green    {background-color: #8c9440;}\n");
+					printf(".bg-yellow   {background-color: #de935f;}\n");
+					printf(".bg-blue     {background-color: #5f819d;}\n");
+					printf(".bg-purple   {background-color: #85678f;}\n");
+					printf(".bg-cyan     {background-color: #5e8d87;}\n");
+					printf(".bg-white    {background-color: #707880;}\n");
+					break;
+
+				default:
+					printf(".dimgray     {color: dimgray;}\n");
+					printf(".red         {color: red;}\n");
+					printf(".green       {color: green;}\n");
+					printf(".yellow      {color: olive;}\n");
+					printf(".blue        {color: blue;}\n");
+					printf(".purple      {color: purple;}\n");
+					printf(".cyan        {color: teal;}\n");
+					printf(".white       {color: gray;}\n");
+					printf(".bg-black    {background-color: black;}\n");
+					printf(".bg-red      {background-color: red;}\n");
+					printf(".bg-green    {background-color: green;}\n");
+					printf(".bg-yellow   {background-color: olive;}\n");
+					printf(".bg-blue     {background-color: blue;}\n");
+					printf(".bg-purple   {background-color: purple;}\n");
+					printf(".bg-cyan     {background-color: teal;}\n");
+					printf(".bg-white    {background-color: gray;}\n");
 			}
 			printf(".underline   {text-decoration: underline;}\n");
 			printf(".bold        {font-weight: bold;}\n");
